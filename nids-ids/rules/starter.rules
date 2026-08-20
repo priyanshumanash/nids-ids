@@ -1,0 +1,10 @@
+# starter.rules — a handful of illustrative signatures.
+# format:  alert <proto> <dst_port|any> "<content>" ; msg:"..."
+
+alert tcp 80  "GET /admin"          ; msg:"HTTP admin path probe"
+alert tcp any "../"                 ; msg:"path traversal sequence"
+alert tcp any "' OR '1'='1"         ; msg:"classic SQL injection tautology"
+alert tcp any "<script>"            ; msg:"reflected XSS marker"
+alert tcp 22  "SSH-2.0-libssh"      ; msg:"libssh client banner"
+alert udp 53  "\xff\xff\xff\xff"    ; msg:"suspicious DNS payload bytes"
+alert tcp any "/etc/passwd"         ; msg:"sensitive file access attempt"
